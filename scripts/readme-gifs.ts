@@ -52,6 +52,7 @@ const MOVES: Raw[] = [
   { backdrop: 'forest', hero: { action: 'sneak', from: 30, to: 46 } },
   { backdrop: 'desert', hero: { action: 'carry', from: 28, to: 48 } },
   { backdrop: 'night', hero: { action: 'wave', from: 46, to: 46 } },
+  { backdrop: 'city', hero: { action: 'spin', from: 44, to: 44 } },
 ]
 const LINES = [
   'Off to fix the build. Hold my coffee!',
@@ -65,8 +66,9 @@ const LINES = [
   'This regex is fine. Probably. ^_^',
   'Moving 3 files into src/lib/',
   'Lint is clean. Time for a snack.',
+  'Shipping v2.0. Party like it is 1999.',
 ]
-const LOOK_ORDER = ['pixel', 'original', 'cave', 'blueprint', 'mosaic', 'aero', 'engraving', 'tapestry', 'golden', 'ukiyoe', 'kamon']
+const LOOK_ORDER = ['pixel', 'original', 'cave', 'blueprint', 'mosaic', 'aero', 'engraving', 'tapestry', 'golden', 'ukiyoe', 'kamon', 'chrome']
 const HERO: Shot[] = LOOK_ORDER.map((look, i) => ({
   look,
   raw: { ...shuffled(MOVES, 5)[i]!, caption: shuffled(LINES, 11)[i]!, title: lookFor(look).label },

@@ -21,14 +21,16 @@ describe('looks', () => {
     expect(lookFor(undefined).name).toBe(DEFAULT_LOOK)
   })
 
-  test('the nine styles are there, and found by any fair spelling', () => {
-    expect(STYLE_NAMES.length).toBe(9)
+  test('the ten styles are there, and found by any fair spelling', () => {
+    expect(STYLE_NAMES.length).toBe(10)
     expect(findLook('Ukiyo-e')?.name).toBe('ukiyoe')
     expect(findLook('golden age')?.name).toBe('golden')
     expect(findLook('frutiger aero')?.name).toBe('aero')
     expect(findLook('copperplate')?.name).toBe('engraving')
     expect(findLook('millefleur')?.name).toBe('tapestry')
     expect(findLook('cave painting')?.name).toBe('cave')
+    expect(findLook('Liquid Chrome')?.name).toBe('chrome')
+    expect(findLook('chrome')?.name).toBe('chrome')
     expect(findLook('nonsense')).toBeUndefined()
   })
 
@@ -98,6 +100,26 @@ describe('looks', () => {
     // The comic's balloon: newsprint white, lettered in capitals, code in the comic's blue.
     expect(svg).toContain('fill="#fffbe8"')
     expect(svg).toContain('<tspan fill="#1d3f8f">NPM</tspan>')
+  })
+
+  test('Liquid Chrome lays its neon grid on the ground, sparkles in the sky and Claude in chrome, at night too', () => {
+    for (const backdrop of ['desert', 'night']) {
+      const scene = parseScene({ ...SCENE, backdrop })
+      if (!scene) throw new Error('expected a scene')
+      const svg = sceneToSvg(scene, { look: 'chrome', figure: '3d' })
+      // The grid is defined once and laid, masked, on each stretch of ground.
+      expect(svg.match(/id="ch-grid"/g)?.length).toBe(1)
+      expect(svg).toMatch(/<mask id="ch-mask\d+" style="mask-type:alpha">/)
+      expect(svg).toContain('<use href="#ch-grid"/>')
+      // Claude's faces reflect the sky and the desert, each in its own direction's chrome.
+      expect(svg).toContain('url(#ch-f-top')
+      expect(svg).toContain('url(#ch-f-front')
+      expect(svg).toContain(backdrop === 'night' ? 'url(#ch-skyn)' : 'url(#ch-sky)')
+    }
+    // The Earth is a turning wireframe globe.
+    const space = parseScene({ ...SCENE, backdrop: 'space' })
+    if (!space) throw new Error('expected a scene')
+    expect(sceneToSvg(space, { look: 'chrome', figure: '3d' })).toContain('<animate attributeName="rx"')
   })
 
   test('the narrator hears which style it writes for', () => {

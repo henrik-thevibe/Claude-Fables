@@ -16,6 +16,7 @@ import type { HeroPainter } from './hero3d'
 import { AERO } from './styles/aero'
 import { BLUEPRINT } from './styles/blueprint'
 import { CAVE } from './styles/cave'
+import { CHROME } from './styles/chrome'
 import { ENGRAVING } from './styles/engraving'
 import { GOLDEN } from './styles/golden'
 import { KAMON } from './styles/kamon'
@@ -162,6 +163,8 @@ export const LOOKS: Record<string, Look> = {
   ukiyoe: UKIYOE,
 
   kamon: KAMON,
+
+  chrome: CHROME,
 }
 
 export const LOOK_NAMES = Object.keys(LOOKS)
