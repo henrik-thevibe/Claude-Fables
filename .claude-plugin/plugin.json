@@ -11,6 +11,13 @@
       "description": "The model that writes each cartoon scene: Sonnet, or Haiku for quicker, cheaper scenes. /fables model switches it in a session.",
       "default": "sonnet",
       "options": ["sonnet", "haiku"]
+    },
+    "terminalArt": {
+      "type": "string",
+      "title": "Terminal art",
+      "description": "How the terminal draws the cartoon: in half-block cells, or hi-res, the desktop's own art played in headless Chrome and shown as a picture (Ghostty, kitty or WezTerm, also inside tmux with Ghostty or kitty beneath). Hi-res needs Node and Chrome, and uses about half a CPU core while a scene is up.",
+      "default": "cells",
+      "options": ["cells", "hires"]
     }
   }
 }
