@@ -30,7 +30,7 @@
 > [!NOTE]
 > Claude Fables was developed entirely in Claude Code cloud environments and tested locally in the desktop app as well. Still, there may be bugs and rough edges. [Issues](https://github.com/henrik-thevibe/Claude-Fables/issues) and pull requests are very welcome.
 
-While Claude works, Fables watches each tool call it makes and each line it says. Every few seconds it asks Sonnet (or Haiku, if you prefer) to retell the latest moment as a scene. Bug hunts turn into nature documentaries and bad regexes get pulled over by the train police. Claude appears as a small orange critter walking, sneaking or flying through the story. When the turn ends there is a closing scene, and it stays up for 30 seconds.
+While Claude works, Fables watches each tool call it makes and each line it says. Every few seconds it asks Sonnet (or Haiku, if you prefer) to retell the latest moment as a scene. Bug hunts turn into nature documentaries and bad regexes get pulled over by the train police. Claude appears as a small orange critter walking, sneaking or flying through the story. When the turn ends, the scene that is up finishes its line and the band clears.
 
 - **A scene every few seconds:** each tool call and line Claude says becomes a moment in a story.
 - **20 actions:** Claude walks, sneaks, digs, trips, shrugs, sleeps and celebrates, matched to the work.
@@ -57,7 +57,7 @@ While Claude works, Fables watches each tool call it makes and each line it says
    To work on the mod with hot reload, also add `"CLAUDE_CODE_PLUGIN_DIR_WATCH": "1"`.
 3. Restart the desktop app and give Claude a task in the Code tab. The cartoon appears above the prompt after the first few seconds.
 
-To try it from the terminal for one session instead, run `claude --plugin-dir ~/code/Claude-Fables`. Note that in the terminal the mod only watches and draws nothing.
+To try it from the terminal for one session instead, run `claude --plugin-dir ~/code/Claude-Fables`. In the terminal the cartoon is painted in half-block cells (`hooks/terminal.ts`): the same scenes, Claude and captions at terminal resolution, with each style translated to its inks, lines and textures.
 
 ## How it works
 
@@ -79,7 +79,7 @@ tool calls, Claude's own words ──► activity log (last 14 lines)
 
 - **The model writes data, not code.** Each scene is a small declarative JSON object: a backdrop, Claude's action, particles, a caption and its tone. `hooks/scene.ts` validates it strictly: unknown fields are dropped, numbers clamped, strings flattened and cut, and colors must be 3- or 6-digit hex. A bad reply can't break anything; it just doesn't show.
 - **The animation runs inside the SVG.** `hooks/svg.ts` compiles a scene into one SVG document that animates itself with SMIL: walk cycles, bobbing, scrolling trains, twinkling stars, and a speech bubble that types itself out. Once the scene is drawn, the desktop needs no redraws for it.
-- **Every line gets read.** Scenes play from a queue, one at a time. Each one stays up until its bubble has typed out and been on screen long enough to read, which takes longer for a longer caption. Nothing cuts in: not a failure, not the end of the turn, not the next prompt. The narrator asks for the next scene a little before the current one is read, timed to how quickly the model has been answering, so it is ready on time. A scene that comes back early waits in the queue. News (a failure, the turn ending) is asked for straight away and joins the queue behind the current scene. The narrator is told what the hero has just said, so the news breaks in within the story ("Wait-", "Oh!") rather than on screen. When a new prompt comes in, the scene that is up is still read through, and a closing scene still on its way plays before the new story starts. Once a turn is over, its last scene stays up for 30 seconds, then the band clears.
+- **Every line gets read.** Scenes play from a queue, one at a time. Each one stays up until its bubble has typed out and been on screen long enough to read, which takes longer for a longer caption. Nothing cuts in: not a failure, not the end of the turn, not the next prompt. The narrator asks for the next scene a little before the current one is read, timed to how quickly the model has been answering, so it is ready on time. A scene that comes back early waits in the queue. News (a failure, the turn ending) is asked for straight away and joins the queue behind the current scene. The narrator is told what the hero has just said, so the news breaks in within the story ("Wait-", "Oh!") rather than on screen. When a new prompt comes in, the scene that is up is still read through, and a closing scene still on its way plays before the new story starts. Once a turn is over, nothing more is asked for: the scene that is up is read through, then the band clears.
 
 <details>
 <summary><b>Under the hood:</b> queueing, smooth changes, caption fit, limits, sizing</summary>
@@ -88,7 +88,7 @@ tool calls, Claude's own words ──► activity log (last 14 lines)
 - **Captions fit the bubble.** The narrator is asked for at most 70 characters. The hard limit is 80, the most the bubble shows whole in four lines. A longer caption is cut after its last full sentence, or else after a whole word with an ellipsis, never mid-word. The bubble always shows every word it is given.
 - **It has limits.** Only one model request runs at a time, scenes come at least 5 seconds apart, and after errors it backs off exponentially, up to 60 seconds. The prompt is always bounded (the last 14 activity lines and the last 4 scenes), so a long session can't outgrow the context window.
 - **It fits the window.** The band always gets a cartoon as wide as it is and 192 px tall. A wider window shows more of the scene, not a bigger one, so the art and the text stay the same size. Resizing the window redraws it.
-- **Desktop only.** In the terminal the band is left exactly as the engine draws it.
+- **In the terminal too.** The terminal has no Svg, so `hooks/terminal.ts` paints each scene into a `Raster` of '▀' cells, two pixels to a cell, lays the bubble over it as text, and repaints it in place about eight times a second.
 
 </details>
 
@@ -103,6 +103,7 @@ tool calls, Claude's own words ──► activity log (last 14 lines)
 | `hooks/scene.ts` | The scene format and its validator |
 | `hooks/sprites.ts` | The pixel-art library: Claude in two walk frames, plus 30+ props |
 | `hooks/svg.ts` | Scene → animated SVG: backdrops, particles, props, hero, caption |
+| `hooks/terminal.ts` | Scene → half-block cells for the terminal's `Raster`: the same scenes and styles, two pixels to a cell |
 | `hooks/looks.ts` | The looks: Pixel Art, the Original, and the registry of styles |
 | `hooks/styles/*.ts` | The nine gallery styles, each an art bible: inks, how each kind of element is drawn, Claude, caption, tag, frame |
 | `hooks/art/roles.ts`, `hooks/art/painter.ts`, `hooks/art/ink.ts` | The roles scenes paint their elements under, and the painter a style redraws them with |
@@ -120,6 +121,8 @@ tool calls, Claude's own words ──► activity log (last 14 lines)
 
 - `/fables`: toggle the mod on or off. `/fables on` and `/fables off` also work. The setting is remembered across sessions.
 - `/fables style <name>`: draw every scene in one of the styles below, for example `/fables style ukiyo-e` or `/fables style golden age`. `/fables style` lists them, and `/fables style off` goes back to the default, Pixel Art. It is remembered across sessions.
+- `/fables style shuffle`: draw each new scene in a style picked at random, never the same one twice in a row. Picking a style by name ends it.
+- `/fables demo`: play every style in turn, 8 seconds each on a scene of its own, then go back to your style. It asks the model nothing. `/fables demo stop` ends it early.
 - `/fables pixel off` and `/fables pixel on` still work: they switch between the original look drawn smooth and its pixel art.
 - `/fables model haiku` and `/fables model sonnet`: pick who writes the story. Sonnet is the default and writes wittier scenes; Haiku answers in about a second and costs less, but writes plainer captions and slips a little more often (a bad reply is simply skipped). `/fables model` shows which one is on. The choice is remembered across sessions; the config menu's **Scene model** (`pluginConfigs.fables.model`) sets the default.
 

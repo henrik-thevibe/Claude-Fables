@@ -73,6 +73,10 @@ export class Director {
   isOn = true
   /** The style scenes are drawn in, so the narrator can write in its voice. */
   look = 'pixel'
+  /** Whether a turn's end gets a closing scene; without one, the band clears once the scene up is read. */
+  closes = true
+  /** How long the turn's last scene stays up once the turn is over and it has been read. */
+  lingerMs = LINGER_MS
   ask = ''
   log: Activity[] = []
   story: StoryBeat[] = []
@@ -137,7 +141,9 @@ export class Director {
   complete(reason: Ending) {
     if (!this.isTurnRunning) return
     this.isTurnRunning = false
-    if (this.isOn && this.log.length > 0) this.ending = reason
+    // No closing scene: what is still waiting is behind the story now; the scene up is read through.
+    if (!this.closes) this.queue = []
+    else if (this.isOn && this.log.length > 0) this.ending = reason
   }
 
   /**
@@ -151,7 +157,7 @@ export class Director {
     const now = await host.now()
     const next = this.queue[0]
     if (next && now >= this.readUntil) await this.present(host, next, now)
-    else if (this.isIdle && this.shown && now >= this.readUntil && now >= this.shownAt + LINGER_MS) {
+    else if (this.isIdle && this.shown && now >= this.readUntil && now >= this.shownAt + this.lingerMs) {
       this.shown = undefined
       await host.show(null)
       host.trace?.({ kind: 'clear', at: now })
@@ -201,7 +207,8 @@ export class Director {
         return
       }
       this.failures = 0
-      if (isStale || !this.isOn) return
+      // Without closing scenes, a scene that lands after the turn ended comes too late to tell.
+      if (isStale || !this.isOn || (!this.closes && !this.isTurnRunning)) return
       const queued: Queued = { scene: drawn, closing, turn: forTurn }
       // A closing scene goes ahead of any scene of a newer turn already waiting.
       const at = closing ? this.queue.findIndex(q => q.turn > forTurn) : -1

@@ -514,7 +514,7 @@ const paper = (shape: string, skin: Paper) =>
   `<g fill="${skin.ink}" stroke="${skin.ink}" stroke-width="2.2" stroke-linejoin="round">${shape}</g><g fill="${skin.card}">${shape}</g>`
 
 /** What a word of the caption is, so it can be set apart: the bubble stays the same, the words change. */
-type Kind = 'plain' | 'code' | 'path' | 'fn' | 'num' | 'bad' | 'good' | 'face'
+export type Kind = 'plain' | 'code' | 'path' | 'fn' | 'num' | 'bad' | 'good' | 'face'
 /** How a kind of word is set: in its color from the paper, and numbers, failures and successes in bold. */
 const kindAttrs = (kind: WordKind, skin: Paper) => `fill="${skin.kinds[kind]}"${kind === 'num' || kind === 'bad' || kind === 'good' ? ' font-weight="700"' : ''}`
 const FACE = /^(\^_\^|\^\^;?|>_<|>\.<|o_O|O_o|o\.O|:-?[)(DPpO3|/]|;-?\)|[xX]D|T_T|-_-|\._\.|\\o\/|<3|¯\\_\(ツ\)_\/¯|\(•_•\)|\(⌐■_■\)|->|=>|<-|~>|>>>|\.\.\.|\[(OK|ok|WIP|TODO|DONE)\]|\/\/|#!|\$|&&|\|\|)$/
@@ -525,10 +525,10 @@ const FN = /^[\w.$#]+\(\)$/
 const PATH = /^[\w@~./-]*\w\.(tsx?|jsx?|mjs|cjs|py|rb|go|rs|java|kt|swift|json|ya?ml|toml|css|scss|html|md|sql|sh|lock|env|test\.ts)$|^~?\.?\/?[\w@.-]+\/[\w@./-]*$/i
 const CMD = /^(npm|npx|pnpm|yarn|bun|git|pytest|tsc|eslint|cargo|go|make|pip|docker|curl|gh)$|^--?\w/
 
-type Word = { lead: string; core: string; tail: string; kind: Kind }
+export type Word = { lead: string; core: string; tail: string; kind: Kind }
 
 /** The caption as words with their kinds. `backticks` mark code, and are not shown. */
-function words(text: string, tone: Tone | undefined): Word[] {
+export function words(text: string, tone: Tone | undefined): Word[] {
   const out: Word[] = []
   // The tone leads the caption as a mark, unless the narrator already wrote one.
   const mark = tone === 'trouble' ? '✗' : tone === 'milestone' ? '✓' : ''
@@ -577,7 +577,7 @@ const wordLen = (w: Word) => cols(w.lead) + cols(w.core) + cols(w.tail)
 const MAX_LINES = 4
 
 /** Greedy wrap of words into lines of at most `width` characters; a word longer than the line is cut. */
-function wrapWords(list: readonly Word[], width: number): Word[][] {
+export function wrapWords(list: readonly Word[], width: number): Word[][] {
   const lines: Word[][] = []
   let line: Word[] = []
   let len = 0
