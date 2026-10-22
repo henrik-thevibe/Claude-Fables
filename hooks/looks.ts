@@ -14,10 +14,16 @@
 import type { Painter } from './art/roles'
 import type { HeroPainter } from './hero3d'
 import { AERO } from './styles/aero'
+import { ATLAS } from './styles/atlas'
+import { BLACKFIGURE } from './styles/blackfigure'
 import { BLUEPRINT } from './styles/blueprint'
 import { CAVE } from './styles/cave'
+import { CHROME } from './styles/chrome'
+import { CHRONO } from './styles/chrono'
+import { DELFT } from './styles/delft'
 import { ENGRAVING } from './styles/engraving'
 import { GOLDEN } from './styles/golden'
+import { HERALDRY } from './styles/heraldry'
 import { KAMON } from './styles/kamon'
 import { MOSAIC } from './styles/mosaic'
 import { TAPESTRY } from './styles/tapestry'
@@ -162,6 +168,18 @@ export const LOOKS: Record<string, Look> = {
   ukiyoe: UKIYOE,
 
   kamon: KAMON,
+
+  chrome: CHROME,
+
+  blackfigure: BLACKFIGURE,
+
+  heraldry: HERALDRY,
+
+  delft: DELFT,
+
+  atlas: ATLAS,
+
+  chrono: CHRONO,
 }
 
 export const LOOK_NAMES = Object.keys(LOOKS)
