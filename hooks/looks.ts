@@ -14,13 +14,24 @@
 import type { Painter } from './art/roles'
 import type { HeroPainter } from './hero3d'
 import { AERO } from './styles/aero'
+import { ATLAS } from './styles/atlas'
+import { BAUHAUS } from './styles/bauhaus'
+import { BLACKFIGURE } from './styles/blackfigure'
 import { BLUEPRINT } from './styles/blueprint'
 import { CAVE } from './styles/cave'
+import { CHROME } from './styles/chrome'
+import { CHRONO } from './styles/chrono'
+import { CUBISM } from './styles/cubism'
+import { DELFT } from './styles/delft'
 import { ENGRAVING } from './styles/engraving'
 import { GOLDEN } from './styles/golden'
+import { HERALDRY } from './styles/heraldry'
 import { KAMON } from './styles/kamon'
+import { MIDCENTURY } from './styles/midcentury'
 import { MOSAIC } from './styles/mosaic'
+import { NOUVEAU } from './styles/nouveau'
 import { TAPESTRY } from './styles/tapestry'
+import { TATTOO } from './styles/tattoo'
 import { UKIYOE } from './styles/ukiyoe'
 
 /** How one art pixel of a sprite is drawn. */
@@ -162,6 +173,28 @@ export const LOOKS: Record<string, Look> = {
   ukiyoe: UKIYOE,
 
   kamon: KAMON,
+
+  chrome: CHROME,
+
+  blackfigure: BLACKFIGURE,
+
+  heraldry: HERALDRY,
+
+  delft: DELFT,
+
+  atlas: ATLAS,
+
+  chrono: CHRONO,
+
+  nouveau: NOUVEAU,
+
+  cubism: CUBISM,
+
+  bauhaus: BAUHAUS,
+
+  tattoo: TATTOO,
+
+  midcentury: MIDCENTURY,
 }
 
 export const LOOK_NAMES = Object.keys(LOOKS)
