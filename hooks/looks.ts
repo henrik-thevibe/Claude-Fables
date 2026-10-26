@@ -14,13 +14,49 @@
 import type { Painter } from './art/roles'
 import type { HeroPainter } from './hero3d'
 import { AERO } from './styles/aero'
+import { ATLAS } from './styles/atlas'
+import { BAUHAUS } from './styles/bauhaus'
+import { BILL } from './styles/bill'
+import { BLACKFIGURE } from './styles/blackfigure'
+import { BLOB } from './styles/blob'
 import { BLUEPRINT } from './styles/blueprint'
 import { CAVE } from './styles/cave'
+import { CHROME } from './styles/chrome'
+import { CHRONO } from './styles/chrono'
+import { CONSTRUCTIVISM } from './styles/constructivism'
+import { CONTOUR } from './styles/contour'
+import { CUBISM } from './styles/cubism'
+import { DECO } from './styles/deco'
+import { DELFT } from './styles/delft'
+import { DENSITY } from './styles/density'
 import { ENGRAVING } from './styles/engraving'
+import { FIELD } from './styles/field'
+import { GLASS } from './styles/glass'
+import { GLYPHS } from './styles/glyphs'
 import { GOLDEN } from './styles/golden'
+import { HANDHELD } from './styles/handheld'
+import { HERALDRY } from './styles/heraldry'
+import { INITIAL } from './styles/initial'
 import { KAMON } from './styles/kamon'
+import { MAZE } from './styles/maze'
+import { MIDCENTURY } from './styles/midcentury'
 import { MOSAIC } from './styles/mosaic'
+import { NEON } from './styles/neon'
+import { NOUVEAU } from './styles/nouveau'
+import { OPART } from './styles/opart'
+import { PHOSPHOR } from './styles/phosphor'
+import { PIN } from './styles/pin'
+import { POEM } from './styles/poem'
+import { POPART } from './styles/popart'
+import { PRINTER } from './styles/printer'
+import { PROPORTION } from './styles/proportion'
+import { SAMPLER } from './styles/sampler'
+import { SILHOUETTE } from './styles/silhouette'
+import { SILKSCREEN } from './styles/silkscreen'
 import { TAPESTRY } from './styles/tapestry'
+import { TATTOO } from './styles/tattoo'
+import { TELETEXT } from './styles/teletext'
+import { TOMB } from './styles/tomb'
 import { UKIYOE } from './styles/ukiyoe'
 
 /** How one art pixel of a sprite is drawn. */
@@ -162,6 +198,78 @@ export const LOOKS: Record<string, Look> = {
   ukiyoe: UKIYOE,
 
   kamon: KAMON,
+
+  chrome: CHROME,
+
+  blackfigure: BLACKFIGURE,
+
+  heraldry: HERALDRY,
+
+  delft: DELFT,
+
+  atlas: ATLAS,
+
+  chrono: CHRONO,
+
+  nouveau: NOUVEAU,
+
+  cubism: CUBISM,
+
+  bauhaus: BAUHAUS,
+
+  tattoo: TATTOO,
+
+  midcentury: MIDCENTURY,
+
+  opart: OPART,
+
+  popart: POPART,
+
+  contour: CONTOUR,
+
+  pin: PIN,
+
+  glyphs: GLYPHS,
+
+  blob: BLOB,
+
+  phosphor: PHOSPHOR,
+
+  density: DENSITY,
+
+  field: FIELD,
+
+  teletext: TELETEXT,
+
+  maze: MAZE,
+
+  poem: POEM,
+
+  tomb: TOMB,
+
+  glass: GLASS,
+
+  initial: INITIAL,
+
+  proportion: PROPORTION,
+
+  silhouette: SILHOUETTE,
+
+  sampler: SAMPLER,
+
+  bill: BILL,
+
+  constructivism: CONSTRUCTIVISM,
+
+  deco: DECO,
+
+  neon: NEON,
+
+  silkscreen: SILKSCREEN,
+
+  printer: PRINTER,
+
+  handheld: HANDHELD,
 }
 
 export const LOOK_NAMES = Object.keys(LOOKS)
