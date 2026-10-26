@@ -12,7 +12,7 @@
 <p align="center">
   <img alt="Claude Code mod" src="https://img.shields.io/badge/Claude_Code-mod-d97757">
   <img alt="Desktop app" src="https://img.shields.io/badge/runs_in-the_desktop_app-3b3a36">
-  <img alt="11 styles" src="https://img.shields.io/badge/styles-11-6a5acd">
+  <img alt="52 styles" src="https://img.shields.io/badge/styles-53-6a5acd">
   <img alt="20 actions" src="https://img.shields.io/badge/actions-20-2e8b57">
   <img alt="7 scenes" src="https://img.shields.io/badge/scenes-7-c46a2a">
 </p>
@@ -35,7 +35,7 @@ While Claude works, Fables watches each tool call it makes and each line it says
 - **A scene every few seconds:** each tool call and line Claude says becomes a moment in a story.
 - **20 actions:** Claude walks, sneaks, digs, trips, shrugs, sleeps and celebrates, matched to the work.
 - **7 hand-lit scenes:** forest, space, city, desert, volcano, lab and night village.
-- **11 styles:** from pixel art to ukiyo-e, every element redrawn in the medium.
+- **53 styles:** from pixel art to ukiyo-e to liquid chrome, every element redrawn in the medium.
 - **Captions that read like a terminal:** files, functions, numbers, failures and successes each set apart.
 - **Safe by design:** the model writes data, never code, and a bad reply is simply skipped.
 
@@ -104,7 +104,7 @@ tool calls, Claude's own words ──► activity log (last 14 lines)
 | `hooks/sprites.ts` | The pixel-art library: Claude in two walk frames, plus 30+ props |
 | `hooks/svg.ts` | Scene → animated SVG: backdrops, particles, props, hero, caption |
 | `hooks/looks.ts` | The looks: Pixel Art, the Original, and the registry of styles |
-| `hooks/styles/*.ts` | The nine gallery styles, each an art bible: inks, how each kind of element is drawn, Claude, caption, tag, frame |
+| `hooks/styles/*.ts` | The fifty-one gallery styles, each an art bible: inks, how each kind of element is drawn, Claude, caption, tag, frame |
 | `hooks/art/roles.ts`, `hooks/art/painter.ts`, `hooks/art/ink.ts` | The roles scenes paint their elements under, and the painter a style redraws them with |
 | `hooks/grade.ts` | The medium a grid style sets the drawn stage into: tesserae or a weave |
 | `hooks/clawd3d.ts` | The 3D Claude: the box model, its motions and its projection (ported from the gallery) |
@@ -199,7 +199,7 @@ In the Pixel Art look (the default), the whole stage, scenery and Claude togethe
 
 Two looks draw the authored scenes as they are: **Pixel Art** (`pixel`, the default) and the **Original** (`original`), the same scenes drawn smooth.
 
-Nine more styles, from the [Claude Mascot Style Gallery](https://github.com/henrik-thevibe/Claude-Mascot-Style-Gallery), are artworks of their own. Each one redraws every element of every scene, Claude, the caption bubble, the chapter tag and the frame in its own medium, translated from the gallery's original plate. They are cosmetic only: the story, the scenery's composition and Claude's path stay as they are, and nothing is added to a scene.
+Fifty-one more styles, from the [Claude Mascot Style Gallery](https://github.com/henrik-thevibe/Claude-Mascot-Style-Gallery), are artworks of their own. Each one redraws every element of every scene, Claude, the caption bubble, the chapter tag and the frame in its own medium, translated from the gallery's original plate. They are cosmetic only: the story, the scenery's composition and Claude's path stay as they are, and nothing is added to a scene.
 
 | Style | `/fables style …` | The artwork |
 | --- | --- | --- |
@@ -212,6 +212,48 @@ Nine more styles, from the [Claude Mascot Style Gallery](https://github.com/henr
 | Golden Age Comic | `golden` | Flat newsprint inks, shade in Ben-Day dots, heavy keylines; a lettered balloon |
 | Ukiyo-e | `ukiyoe` | Flat woodblock inks over a key line, bokashi skies, kasumi mist, a vermilion sun; a cartouche and seal |
 | Kamon | `kamon` | Cream planes on black silk parted by cuts of one width; Claude as a crest; the vermilion hanko |
+| Liquid Chrome | `chrome` | Millennium chrome, 1999: every solid thing chrome reflecting a blue sky over an orange desert, plants in mint chrome; an iridescent pink-to-cyan sky with twinkling sparkles, violet and magenta at night; a neon grid floor running to a white-hot horizon; the Earth a turning wireframe globe, the sun and moon chrome balls; Claude in chrome with a magenta shadow; a chrome wordmark and a shine sweeping across |
+| Black-Figure | `blackfigure` | Glossy black slip on bare orange clay, details incised through it; added red and white, the far ranks in thinned slip; dot-rosettes for stars; Claude a black figure with a ribbed red lid; tongues, a Greek key and ΚΛΑΥΔΙΟΣ ΚΑΛΟΣ |
+| Heraldry | `heraldry` | Flat tinctures outlined sable on a diapered azure field, shade hatched in Petra Sancta; a sun in splendour, estoiles Or, nebuly clouds, towers argent masoned; Claude gules fimbriated Or, armed and crowned; a bordure Or, a motto scroll and a parchment caption |
+| Delftware | `delft` | Cobalt washes on tin glaze in a loose deep contour; hatched shadow masses; light left as wiped glaze; grass tufts, dotted paths, ripple strokes; windmill and church under a glaze moon; crackled tile joints, a double rule with ox-head corners, a banderole tag |
+| Celestial Atlas | `atlas` | An old navy star chart: a conic grid, the dashed Æquator and a Milky Way of star clouds; Opus, Sonnet and Haiku as great stars lettered in italic Caslon; every light a star, clouds as dotted nebulae, fire in hand-coloured gold; Claude as the constellation CLAVDIVS; a graduated frame and a "Tab. I" cartouche |
+| Chronophotography | `chrono` | Sepia albumen plates pasted along a foxed cream card, each with its own exposure, vignette, scratches and dust; a ruled, numbered backdrop; suns and lamps burnt out to halation; Claude the dark subject by day and pale under the flash by night, his earlier exposure a plate behind; a title slip and a ruled caption slip |
+| Art Nouveau | `nouveau` | Flat pastel litho stones over a warm-brown contour that thickens with nearness; Mucha halos with gold dots and petal wreaths; whiplash pastel ribbons; gold sparkle stars; an arched cream panel with gold tendrils, lilies and a sage plaque |
+| Cubism | `cubism` | Pasted papers cut straight, faux-bois, stipple and newsprint over a cream sheet; charcoal contours, guide lines and a heavy bar; a split ochre sun; Claude seen front and profile across a seam; a newspaper-scrap masthead and a "Clawd 13" signature |
+| Bauhaus | `bauhaus` | Flat primary planes on a cream sheet, no outline; a diagonal band, a big circle holding the sun, moon or cone; a drifting red square, blue circle and yellow square; clouds and ash as bars with half discs, stars as cream squares; Claude on a heavy rule; a bold lowercase tag with a red square |
+| Tattoo Flash | `tattoo` | Bold black line packed with flat flash inks on tea-stained paper; black whip shading; a sunburst behind a red-pointed sun, scalloped clouds, flash stars; hot-rod flames on Claude's back; a swallowtail banner with a rose and a pencilled price |
+| Mid-Century Modern | `midcentury` | Flat screen-printed planes split into light and shade, banded teal skies, a split-disc sun, atomic starbursts; Harper firs and lollipop crowns on a mustard field; a faceted coral Clawd with a cardinal on his head; a cream mat and a slanted mustard tab |
+| Op Art | `opart` | Black-and-white band fields only; a swelling Vasarely lens in the sky; chevron trees, Riley currents for grass and water, a checker city; a ring-target sun and Vega-sphere moons; the dark worlds drawn as negatives; a checker border |
+| Pop Art | `popart` | Flat primaries and Ben-Day dot screens under a heavy black keyline; a blue dot-field sky; comic stars and puffy keyed clouds; glass as the comic mirror with white gleams; a jagged yellow burst; a yellow narration box and a thought-cloud caption |
+| Contour Map | `contour` | Hypsometric tints ringed with brown contours and index contours; the sky a chart-blue Sea of Context with wave marks and shore ripples; woodland rings, hatched built-up areas, dashed shoals; a compass-rose sun and Mt. Prompt's spot height; a graduated neatline, north arrow and kilotoken scale bar |
+| Enamel Pin | `pin` | Hard-enamel cells walled in lit gold wire; banded enamel skies with faceted gold star pins; glitter-enamel nights; Claude as a coral pin with a pearl lid and a gloss streak; a pink backing card with a hang slot, a terminal-window chapter pin |
+| Atlas Glyph Tiles | `glyphs` | Every solid thing set in glyph tiles on one grid, each in a black gutter with a ■ or a thin /; signal orange on an azure field, stepped black shadows, blinking stray glyphs; a terminal band streaming tiles |
+| Blob Mosaic | `blob` | Flat vivid tiles with darker grout on one flat chapter ground; black stepped shadows; sun, moon and Earth as blobs with glyph eyes; a bobbing crowd in the corners; a tile-lettered tag and a tiled caption panel |
+| Phosphor Streams | `phosphor` | Glyph cells printed over the sampled scene; falling phosphor streams that stop at once; dim glyph masses with bright contours; a pale green Claude with black-cell eyes; a 01:29 clock, a scanline tube and a blinking prompt |
+| Density Portrait | `density` | A black terminal of monospace cells streaming hex handles; the picture is only how brightly each character glows; far ranks sink into a near-empty field; amber type for fire and lamps; Claude in the densest type inside a margin of empty cells; a terminal pane with a status line and a prompt cursor |
+| Density Field | `field` | A grid of monospace cells, each glyph of ` .:-=+*#` picked by brightness and set in its cell's dim tint; land a step denser for each step nearer, never past `=`; bright-blob suns; Claude in `#` and `*` phosphor with a ring of empty cells; drifting "Hi" packets; a shell-prompt tag and a box-drawn caption |
+| Teletext Page | `teletext` | Mosaic blocks in teletext's eight colours on a black page; checker dithers for in-between tones and block grit for ground; banded skies; flashing plus-sign stars; a header row with a ticking clock and a Fastext row; a yellow-on-blue title band and a boxed subtitle |
+| Maze War | `maze` | One-bit Alto bitmap, white and black only; wireframe planes with hidden lines knocked out; ordered dither for shadow and light; perspective maze floor; eyeball sun and moon; reverse video by night |
+| Code Poem | `poem` | Every mass set in monospace letters lifted from the style's own source; old gold, phosphor and dim green inks on a dark terminal; sky as the poem's ghost text; stars, sparks, rain and fireflies as single glyphs; Claude in lettered faces; scanlines, bezel and blinking cursor |
+| Tomb Painting | `tomb` | Flat earth pigments in a carbon contour; bare plaster by day, Nut's starred blue ceiling by night; Ra's disc and Khonsu's moon; Claude in ochre with a linen kilt and kohl eyes; khekher frieze, hieroglyph column, cartouche |
+| Stained Glass | `glass` | Gothic lancet of leaded pot-metal glass; cobalt, ruby, gold and emerald panes; jeweled pane-field skies; grisaille detail; gold quatrefoil stars |
+| Illuminated Initial | `initial` | Tempera and gold on vellum; ultramarine sky with gold diaper; gilded initial and ivy border; ink-lined flat pigments; flower-strewn fields; gold stars on lapis by night |
+| Proportion Study | `proportion` | Foxed notebook paper; iron-gall ink with left-handed hatching; sfumato distance; red chalk fire; mirror writing and compass constructions; blue prepared paper with white chalk at night |
+| Silhouette | `silhouette` | Cut-paper layers on cream card; depth told in paper tone; moonlit blue-grey night; gilt sun, moon, stars and fire; black portrait Claude with cut-through eyes; beaded gilt frame |
+| Sampler | `sampler` | Cross-stitch on linen count, one cross per square; turkey red, indigo, leaf green, walnut, gold silk; indigo skies by day and night; stitched green-and-red border; captions on linen in a running stitch |
+| Strongman Bill | `bill` | Two-colour letterpress, vermilion and black on foxed buff; woodcut line hatching along each grain; red block off register for fire, sun and lamps; black-ruled night sky with bare-paper stars; starred red banner and ruled notice captions |
+| Constructivism | `constructivism` | Three inks on newsprint; halftone screens for tones; black diagonal sky bands; red sun disc, red night; Claude as a pasted photomontage cut-out; grotesque chapter on a red wedge |
+| Art Deco | `deco` | Streamline poster planes in teal, jade and bronze; sunburst skies; gilded ringed sun; fine gold edging; two-toned towers; cream card captions in a double gold rule |
+| Neon | `neon` | Brick wall at night; everything bent in lit glass tube over dark panes; a tube color for each family; Claude as an orange diner sign; pink script chapter |
+| Silkscreen | `silkscreen` | Warhol-style pop screenprint; flat inks with no gradients; heavy black key line; halftone shadows; turquoise or ultramarine sky; color screen slightly off the outline; cream paper mat |
+| Line Printer | `printer` | ASCII art on greenbar listing paper; tone typed as characters on a fixed grid; black ribbon with red kept for fire, lamps and Claude; tilde water; tractor-feed margins and job header; capital torn-slip captions |
+| Handheld | `handheld` | Four-shade green handheld LCD; fat pixels on a gridded screen; checkerboard-dithered horizons; dark-ringed sprites; double-ruled text box |
+| Low Poly | `lowpoly` | Flat-shaded polygons; banded sky, navy by night; distance fog; triangle-mesh ground; octagon sun and moon; coral polygon Claude; gold HUD chapter; pale dialog-box captions |
+| Stencil | `stencil` | Spray paint on a concrete wall; three flat stencil layers with overspray; one red can; black cut-out Claude with drips; bridged stencil lettering and a paste-up caption |
+| Patch | `patch` | An embroidered patch on denim; satin-stitch flosses with dashed stem-stitch outlines; chambray twill sky, gold cross-stitch stars; Claude a merrow-bordered red patch; woven cream labels |
+| Media Player Skin | `skin` | Winamp-era player skin; brushed silver bezel and glossy plastic; visualiser-screen sky with plasma and scanlines; green LCD marquee; spectrum-analyser fire; glossy orange Claude |
+| Holo Sticker | `holo` | Die-cut rainbow foil stickers with white borders; candy-pink glitter plastic sky and ground; heart and star stickers, twinkling sparkles; violet glitter by night; Claude as the star foil sticker |
+| Vista | `vista` | Aurora wallpaper sky with lime light swooshes; glossy split-highlight icons with teal keylines; Start-button orb sun and moon; Claude as the selected Explorer icon; Aero glass window frame and balloon tips |
 
 <details>
 <summary><b>How a style redraws a scene</b></summary>
@@ -254,5 +296,5 @@ Claude Fables was developed entirely in Claude Code cloud environments: the mod,
 ## Credits
 
 - Claude's 3D model and its projection are ported from the gallery's engine by [ChetasLua](https://github.com/ChetasLua), under the MIT License.
-- The nine gallery styles come from the [Claude Mascot Style Gallery](https://github.com/henrik-thevibe/Claude-Mascot-Style-Gallery).
+- The fifty-one gallery styles come from the [Claude Mascot Style Gallery](https://github.com/henrik-thevibe/Claude-Mascot-Style-Gallery).
 - Captions are set in [Monocraft](https://github.com/IdreesInc/Monocraft) by Idrees Hassan, under the SIL Open Font License (`fonts/Monocraft-OFL.txt`).
